@@ -99,11 +99,11 @@ main() {
 				{
 					sum1+=a[i];
 				}	
-			printf("Summa: %d\n",sum1);
+			printf("Summa: %d\n\n\n",sum1);
 			}
 			else 
 			{
-				printf("Massiv pust, snachalo zapolnite ego!\n");
+				printf("Massiv pust, snachalo zapolnite ego!\n\n\n");
 			}
 		break;
 		case 4:
@@ -116,11 +116,11 @@ main() {
 					sum+=a[i];
 				}
 				res=(float(sum)/size);
-				printf("Resault= %.2f\n",res);
+				printf("Resault= %.2f\n\n\n",res);
 			}
 			else 
 			{
-				printf("Massiv pust, snachalo zapolnite ego!\n");	
+				printf("Massiv pust, snachalo zapolnite ego!\n\n\n");	
 			}
 			break;	
 		case 5:
@@ -135,11 +135,11 @@ main() {
 					}
 				
 				}	
-			printf("Maximym: %d\n",max);
+			printf("Maximym: %d\n\n\n",max);
 			}
 			else
 			{
-				printf("Massiv pust, snachalo zapolnite ego!\n");	
+				printf("Massiv pust, snachalo zapolnite ego!\n\n\n");	
 			} 
 		break;
 		case 6:
@@ -154,11 +154,11 @@ main() {
 					}
 				
 				}	
-			printf("Minimym: %d\n",min);
+			printf("Minimym: %d\n\n\n",min);
 			}
 			else
 			{
-				printf("Massiv pust, snachalo zapolnite ego!\n");	
+				printf("Massiv pust, snachalo zapolnite ego!\n\n\n");	
 			} 
 		break;
 		case 7:

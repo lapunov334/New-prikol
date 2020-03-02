@@ -6,7 +6,7 @@
 main() {
 	const int maxSize=50;
 	
-	int a[maxSize],b[maxSize],x1,size,i,j,x,fl=0,k=0,gt=0,x2,fg=0,x3,r,r1;
+	int a[maxSize],b[maxSize],save[maxSize],x1,pos,ans=0,n,size,temp=0,i,anss=0,j,m,x,fl=0,k=0,gt=0,x2,fg=0,x3,r,r1,finish=0;
 	
 	srand(time(0));
 	fflush(stdin);
@@ -77,29 +77,46 @@ main() {
 			}
 		break;
 		case 2: 
-			if(k==1)
-			{	
-				if(gt==0)
-				{
-					for(i=0; i<size; i++)
-					{
-						printf("%d ",a[i]);
+				if(k==1)
+				{	
+					if(gt==0)
+					{	
+						if(finish==1)
+						{
+							for(i=0; i<size+m; i++)
+   				 			{
+     	   						printf("%d ", a[i]);
+    						}
+    						printf("\n");
+						}
+						else 
+						{
+						
+						for(i=0; i<size; i++)
+						{	
+							printf("%d ",a[i]);
+						}
+						printf("\n");	
+						}
 					}
-					printf("\n");	
+					else 
+					{
+						printf("Massiv pust, snachalo zapolnite ego!\n");
+					}
 				}
 				else 
 				{
 					printf("Massiv pust, snachalo zapolnite ego!\n");
 				}
-			}
-			else 
-			{
-				printf("Massiv pust, snachalo zapolnite ego!\n");
-			}
 		break;
 		case 3:
 			if(k==1)
 			{
+			if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}
 				int sum1=0;
 				for(i=0; i<size; i++)	
 				{
@@ -114,7 +131,12 @@ main() {
 		break;
 		case 4:
 			if(k==1)
-			{	
+			{
+			if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}	
 				int sum=0;
 				float res=0;
 				for(i=0; i<size; i++)
@@ -132,6 +154,11 @@ main() {
 		case 5:
 			if(k==1)
 			{	
+			if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}
 				int max=a[0];
 				for(i=0; i<size; i++)
 				{
@@ -151,6 +178,11 @@ main() {
 		case 6:
 			if(k==1)
 			{
+				if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}
 				int min=a[0];
 				for(i=0; i<size; i++)
 				{
@@ -176,6 +208,11 @@ main() {
 				switch(x2)
 				{
 					case 1:
+						if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}	
 							for(j=0; j<size-1; j++)
 						{
 								for(i=0; i<size-1; i++)
@@ -190,6 +227,11 @@ main() {
 						}	
 					break;
 					case 2:
+						if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}
 							for(j=0; j<size-1; j++)
 						{
 								for(i=0; i<size-1; i++)
@@ -231,17 +273,27 @@ main() {
 							printf("Poprobyite snova: ");
 							scanf("%d",&r1);
 						}
+						if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}	
 							for(i=r1-1; i<size; i++)
 							{
 								a[i]=a[i+1];
 							}
-							size--;	
-						if (size==0)
-						{
-							gt=1;
-						}
+								size--;	
+								if (size==0)
+								{
+									gt=1;
+								}
 					break;
 					case 2:
+						if(finish==1)
+			{
+				size+=m;
+				finish=0;
+			}
 						printf("Vvedite chislo kotoroe bydem delite: ");
 						scanf("%d",&r);
 							for(i=0; i<size; i++)
@@ -268,7 +320,47 @@ main() {
 			}
 		break;
 		case 9:
-			printf("V processe razrabotki :(\n");
+			if(k==1)
+			{
+				printf("Kolichestvo elementov dlya vstavki: ");
+    			scanf("%d",&m);
+    			while(m>maxSize-size)
+				{
+					printf("Ne correctni vvod dannix!\nPoprobyite snova: ");
+					scanf("%d",&m);
+				}
+				for(i=0; i<m; i++)
+    			{
+        			scanf("%d",&b[i]);
+    			}
+    			printf("Kuda vstavit? ");
+    			scanf("%d",&pos);
+    			while(pos>size || pos<=0)
+    			{
+    				printf("Ne correctni vvod dannix!\nPoprobyite snova: ");
+					scanf("%d",&pos);
+				}
+				for(i=pos-1; i<size; i++)
+    			{
+        			save[ans]=a[i];
+    				ans++;
+				}
+    			for(i=pos-1; i<pos+m; i++)
+    			{
+      			  	a[i]=b[temp];
+    				temp++;
+				}
+    			for(i=pos+m-1; i<pos+m+ans; i++)
+    			{
+      		  		a[i]=save[anss];
+    				anss++;
+				}
+				finish=1;
+			}
+			else
+			{
+				printf("Massiv pust, snachalo zapolnite ego!\n");
+			}		
 		break;
 		case 10:
 			fl=1;

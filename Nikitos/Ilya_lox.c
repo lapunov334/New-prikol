@@ -1,119 +1,70 @@
-#include<stdlib.h>
-#include<stdio.h>
-#include<math.h>
-#include<locale.h>
-#include<time.h>
-main() {
-	
-	
-	const int maxSize=50;
-	int a[maxSize],b[maxSize],x,k=0,n,c[maxSize],m,j=0,i;
-	srand(time(0));
-	printf("Vvedite razmer macciva A [1..50]\n");
-	scanf("%d",&n);
-	while(n<1 || n>50)
-		{
-			printf("Ne correctni vvod dannix");
-			scanf("%d",&n);
-		}	
-	for(i=0; i<n; i++)
-		{		
-			a[i]=rand()%101-50;
-		}
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-	printf("\n");
-	printf("Massiv A: \n");
-	for(i=0; i<n; i++)
-	{
-		printf("%d ",a[i]);
-	}
-	printf("\n");
-	
-	/////////////////////////////////cortirovka a[i]
-    for(i=0; i<n; i++)
-	{
-		c[k]=a[i];
-		k++;
-	}
-    for(j=0; j<k-1; j++)
-	{
-		for(i=0; i<k-1; i++)
-		{
-			if(c[i]>c[i+1])
-			{
-				x=c[i];
-				c[i]=c[i+1];
-				c[i+1]=x;
-			}								
-        }
-    }
-    int p=0;
-    for(i=0;i<n;i++)
+int n,i,a[101],j,temp,temp1,ans,cur,b[101];
+
+int main () {
+
+    scanf("%d",&n);
+
+    for(i=1; i<=n; i++) scanf("%d", &a[i]);
+
+    for(i=1; i<=n; i++)
     {
-        if(a[i]>0)
+        for(j=i+1; j<=n; j++)
         {
-            b[p]=c[i];
-            p++;
+            if(a[i]>a[j])
+            {
+                temp=a[i];
+                temp1=a[j];
+                a[i]=temp1;
+                a[j]=temp;
+            }
         }
     }
-    for(j=0; j<p-1; j++)
-	{
-		for(i=0; i<p-1; i++)
-		{
-			if(b[i]<b[i+1])
-			{
-				x=b[i];
-				b[i]=b[i+1];
-				b[i+1]=x;
-			}								
-        }
-    }
-    int k;
-    for(i=0;i<n;i++)
+
+    int anss=0;
+
+    for(i=1; i<=n; i++)
     {
-       a[i]=b[k];
-       k++;
+        if(a[i]>=1) {ans++; b[ans]=a[i];}
+        if(a[i]==0) anss++;
     }
-    /*int l=0;
-    for(i=0; i<k; i++)
+
+    for(i=1; i<=ans; i++)
     {
-        if(a[i]==0)
+        for(j=i+1; j<=ans; j++)
         {
-            b[l]=c[i];
-            l++;
+            if(b[i]<b[j])
+            {
+                temp=b[i];
+                temp1=b[j];
+                b[i]=temp;
+                b[j]=temp1;
+            }
         }
     }
-    for(i=0; i<n; i++)
-	{
-		c[i]=b[i];
-		k++;
-	}*/
-    ////////////////////////////////
-	
-	int gg,g,l;
-	for(i=0; i<k; i++)
-	{
-		gg=c[i];
-		for (j=i+1; j<k; j++)
-		{
-			if(gg==c[j])
-			{
-				for(g=j; g<k; g++)
-				{
-					c[g]=c[g+1];
-				}
-				k--;
-			}
-		}
-	}
-	
-	/////////////////////////////////Massiv C inter
-	printf("\n");
-	printf("Massiv C: \n");
-	for(i=0; i<k; i++)
-	{
-		printf("%d ",c[i]);
-	}
-	printf("\n");
-	return 0;
+
+    int save=0;
+
+    for(i=1; i<=n; i++)
+    {
+        if(a[i]>=0) {save=i; break;}
+    }
+
+    cur=1;
+
+    for(i=save; i<=n-anss; i++)
+    {
+        a[i]=b[cur];
+        cur++;
+    }
+
+    for(i=1; i<=n-anss; i++) printf("%d ", a[i]);
+
+    for(i=1; i<=anss; i++) printf("0 ");
+
+    printf("\n");
+
 }
